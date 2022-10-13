@@ -1,0 +1,25 @@
+{
+  "name": "ce-api",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Bárbaro Javier Valmaseda <hello@bjvalmaseda.com> (https://bjvalmaseda.com/)",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/index.js\"",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.8.5",
+    "concurrently": "^7.4.0",
+    "jest": "^29.1.2",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.8.4"
+  }
+}

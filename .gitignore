@@ -1,0 +1,15 @@
+#Editor
+.vscode
+
+#Node
+node_modules
+yarn-error.log
+
+#enviroments
+.env
+
+#volumes
+mongo_data
+
+#bundle
+dist
