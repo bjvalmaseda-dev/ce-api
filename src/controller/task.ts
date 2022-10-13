@@ -1,4 +1,11 @@
-import { IRouter, Request, Response, Router, RouterOptions } from "express";
+import {
+  IRouter,
+  NextFunction,
+  Request,
+  Response,
+  Router,
+  RouterOptions,
+} from "express";
 
 import Task from "../db/models/Task";
 
@@ -9,22 +16,22 @@ taskRouter.get("/", async (req: Request, res: Response) => {
   res.json(tasks);
 });
 
-taskRouter.post("/", async (req: Request, res: Response) => {
-  const { content } = req.body;
+taskRouter.post(
+  "/",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { content } = req.body;
 
-  if (!content) {
-    res.status(400).json({ error: "Bad request" });
-  }
+    if (!content) res.status(400).json({ error: "Bad request" });
 
-  try {
-    const newTask = new Task({ content });
-    const task = await newTask.save();
-    res.status(201).json(task);
-  } catch (error) {
-    console.error(error);
-    res.status(400).end();
+    try {
+      const newTask = new Task({ content });
+      const task = await newTask.save();
+      res.status(201).json(task);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 taskRouter.put("/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
