@@ -13,7 +13,7 @@
     An API for Cuban Engineer technical test (Middle Level)
     <br /> 
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>   
+    <a href="https://ce-api.up.railway.app/">View Demo</a>   
   </p>
 </div>
 
@@ -65,20 +65,20 @@ This is an API to support the application created for the React Developer techni
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+You can run this project on locally for testing
 
 ### Prerequisites
 
 To run this API you need to hace installed:
-* docker and docker-compose
+* docker and docker-compose (*if not have a mongoDB instance*)
+* node and yarn
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   $ git clone https://github.com/bjvalmaseda-dev/ce-api
-   ```
+   $ git clone https://github.com/bjvalmaseda-dev/ce-api   ```
+
 2. Copy `.env.example` to `.env`
     ```sh
     $ cp .env.example .env
@@ -88,14 +88,27 @@ To run this API you need to hace installed:
     `DB_USER`: User for MongoDB container
 
     `DB_PASSWORD`: Password for MongoDB container
+    
+    `MONGO_DB_URI`: URI for MongoDB connection
+    
+4. Setting up a MongoDB container (*skip if you have another MongoDB instace*)
+   ```sh
+   $ docker-compose up -d
+   ```
+5. Build the app and run
+   ```sh
+   $ yarn build && yarn start
+
+*To watch change in any file you can run `yarn dev`*
 
 
 ## Testing
 
-To run test execute inside:
+To run integrations test run:
 ```sh
-$ docker-compose api exec npm run test
+$ yarn test
 ```
+*To specific a test DATABASE you can use the enviroment variable `MONGO_DB_URI`*
 
 
 
