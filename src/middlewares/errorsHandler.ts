@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 
 const ERROR_HANDLER: Record<string, (res: Response, err?: any) => void> = {
+  CastError: (res) => res.status(400).json({ error: "id used is malformed" }),
+
   ValidationError: (res: Response, err: Error) =>
     res.status(409).json({ error: err.message }),
 

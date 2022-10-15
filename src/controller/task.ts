@@ -33,33 +33,37 @@ taskRouter.post(
   }
 );
 
-taskRouter.put("/:id", async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const task = req.body;
+taskRouter.put(
+  "/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const task = req.body;
 
-  const updateTask = { content: task.content };
+    const updateTask = { content: task.content };
 
-  try {
-    const taskUpdated = await Task.findByIdAndUpdate(id, updateTask, {
-      new: true,
-    });
-    res.json(taskUpdated);
-  } catch (error) {
-    console.error(error);
-    res.status(400).end();
+    try {
+      const taskUpdated = await Task.findByIdAndUpdate(id, updateTask, {
+        new: true,
+      });
+      res.json(taskUpdated);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
-taskRouter.delete("/:id", async (req: Request, res: Response) => {
-  const { id } = req.params;
+taskRouter.delete(
+  "/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
 
-  try {
-    await Task.findByIdAndDelete(id);
-    res.status(204).end();
-  } catch (error) {
-    console.error(error);
-    res.status(400).end();
+    try {
+      await Task.findByIdAndDelete(id);
+      res.status(204).end();
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 export default taskRouter;

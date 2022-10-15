@@ -13,3 +13,5 @@ mongo_data
 
 #bundle
 dist
+
+coverage

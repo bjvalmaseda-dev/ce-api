@@ -1,14 +1,23 @@
 import mongoose from "mongoose";
 
-const { MONGO_DB_URI } = process.env;
+const { MONGO_DB_URI, NODE_ENV, MONGO_DB_URI_TEST } = process.env;
 
-const dbUri = MONGO_DB_URI || "mongodb://localhost:27017/tasks_app";
+let dbUri: string;
+if (NODE_ENV === "test") {
+  dbUri = MONGO_DB_URI_TEST || "mongodb://localhost:27017/tasks_app_test";
+} else {
+  dbUri = MONGO_DB_URI || "mongodb://localhost:27017/tasks_app";
+}
 
-mongoose
-  .connect(dbUri)
-  .then(() => console.info("[database]: Database is connected"))
-  .catch((err) => console.error(err));
+export const connectDB = () => {
+  mongoose
+    .connect(dbUri)
+    .then(() => console.info("[database]: Database is connected"))
+    .catch((err) => console.error(err));
+};
 
 process.on("uncaughtException", () => {
   mongoose.connection.close();
 });
+
+export default mongoose;
