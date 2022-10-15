@@ -5,6 +5,8 @@ services:
     image: mongo:4.2.23-bionic
     restart: unless-stopped
     command: [--auth]
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}

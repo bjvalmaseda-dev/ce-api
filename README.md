@@ -48,7 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is an API to support the application created for the React Developer technical test for Cuban Enginner. This permit save in a MongoDB all the task, this API support the following actions: 
+This is an API to support the application created for the React Developer technical test for Cuban Engineer. This permit save in a MongoDB all the task, this API support the following actions: 
 
 * Create a task
 * Update a task
@@ -108,7 +108,8 @@ To run integrations test run:
 ```sh
 $ yarn test
 ```
-*To specific a test DATABASE you can use the enviroment variable `MONGO_DB_URI`*
+*To specific a test DATABASE you can use the environment variable `MONGO_DB_URI`*
+*To make e2e test with the frontend you need to run the app in testing mode executing `yarn start:test`*
 
 
 
